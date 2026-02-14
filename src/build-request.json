@@ -1,0 +1,73 @@
+{
+  "kind": "build_request",
+  "title": "Fix background music controls not appearing",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "text": "Ensure the background music control UI (play/pause, next/previous, mute, volume) is always visible and accessible during the Valentine experience on both desktop and mobile.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "music  unable show dude"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On first page load, a visible music controls panel is present (no missing/blank UI) without requiring any special navigation steps.",
+        "The music controls remain visible across all steps (welcome, cards, gift code, bonus card, end).",
+        "The music controls are not hidden behind any overlays/effects/backgrounds and are clickable/tappable.",
+        "Controls are reachable via keyboard navigation (Tab) and have appropriate aria-labels preserved (Play/Pause, Next track, Previous track, Mute/Unmute, Volume control)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Prevent layout/stacking-context issues from hiding the music controls by rendering the controls in a top-level layer that is not affected by page transforms/overflow (e.g., a portal to document.body or an app-level fixed overlay root).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "music  unable show dude"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Music controls appear above the parallax/transformed background and ambient effects on all supported browsers.",
+        "Music controls remain visible even if the main page container uses overflow-hidden and/or transformed elements exist elsewhere on the page."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add lightweight diagnostics to make future visibility issues easy to verify: add a stable test id on the music controls root element and log a non-intrusive console warning if the music controls fail to mount due to a missing provider/context.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "music  unable show dude"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The music controls root element includes a stable attribute (e.g., data-testid=\"music-controls\").",
+        "If the music controls are rendered outside the BackgroundMusicProvider, the app does not crash; instead, a clear English console warning is emitted and the UI degrades gracefully (e.g., controls hidden with an explanation toast or placeholder)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything in frontend/src/components/ui (these are read-only).",
+    "Keep all backend logic in the existing single Motoko actor (backend/main.mo); no new backend services."
+  ],
+  "nonGoals": [
+    "Do not add new music features (e.g., streaming URLs, external audio APIs, user uploads).",
+    "Do not change the playlist content or add new audio tracks unless required to resolve the visibility bug.",
+    "Do not redesign unrelated Valentine experience UI flows beyond what is necessary to ensure the music controls are visible."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

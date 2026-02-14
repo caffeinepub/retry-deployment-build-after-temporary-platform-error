@@ -1,0 +1,21 @@
+{
+  "frontend/src/App.tsx": "Main application component wrapping ValentineExperience with BackgroundMusicProvider and rendering MusicControlsPortal (instead of direct MusicControls) plus Toaster for top-layer music control visibility.",
+  "frontend/src/pages/ValentineExperience.tsx": "Core Valentine experience page managing step-by-step flow with integrated swipe/keyboard navigation, ambient effects, parallax motion, and music playback initiation on \"Start Experience\" user gesture.",
+  "frontend/src/components/ValentineCardView.tsx": "Interactive Valentine card component with tap-to-reveal functionality, showing a teaser state with \"Tap to reveal\" prompt and animating to display the full message on click/tap.",
+  "frontend/src/components/ValentineStepControls.tsx": "Navigation control component providing Start, Next, Back, and Replay buttons with conditional visibility based on current step.",
+  "frontend/src/components/GiftCodeStep.tsx": "Gift code redemption interface with input field, validation, authentication check, and success/error states.",
+  "frontend/src/components/AuthControls.tsx": "Authentication control component displaying sign-in/sign-out button with user status indicator.",
+  "frontend/src/hooks/useGiftCodeRedemption.ts": "Custom hook managing gift code redemption logic, backend actor calls, and redemption state persistence.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for React Query hooks (currently minimal as redemption logic is in dedicated hook).",
+  "frontend/src/content/valentineCards.ts": "Content data defining 7 Valentine cards including 2 cards explicitly mentioning \"Tanya Singh\" and 1 bonus card.",
+  "frontend/src/index.css": "Global styles with warm Valentine OKLCH color system, perspective utilities for card animations, parallax transforms, and comprehensive reduced-motion support for accessibility.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended warm Valentine theme including custom floating animations (float-slow, float-medium) for ambient effects and scale utilities.",
+  "frontend/src/hooks/useCardNavigationGestures.ts": "Custom hook providing swipe (touch) and keyboard (ArrowLeft/ArrowRight) navigation for card browsing with configurable callbacks and enable/disable state.",
+  "frontend/src/components/AmbientEffectsLayer.tsx": "Lightweight ambient effects component rendering floating hearts and sparkles with staggered animations positioned behind main content using pointer-events-none.",
+  "frontend/DEPLOYMENT_RETRY.md": "Documentation guide explaining how to retry deployments after transient platform failures, capture logs for diagnosis, and distinguish between transient and code-related issues.",
+  "frontend/src/music/playlist.ts": "Playlist configuration defining SPM \"E Love\" track metadata (id, title, path) for local audio files served from frontend/public/assets/music/.",
+  "frontend/public/assets/music/README.md": "Documentation listing expected audio filenames and supported formats for the SPM \"E Love\" playlist.",
+  "frontend/src/music/BackgroundMusicProvider.tsx": "React context provider managing background music playback with added useBackgroundMusicSafe hook that returns null instead of throwing when context is unavailable, enabling graceful degradation in MusicControls.",
+  "frontend/src/components/MusicControls.tsx": "Fixed-position music control panel with diagnostics (data-testid, console warning) and graceful fallback UI when BackgroundMusicProvider context is missing; uses pointer-events-auto and z-index 9999 for reliable visibility and interaction.",
+  "frontend/src/components/MusicControlsPortal.tsx": "Portal wrapper component that renders MusicControls via React portal into a dedicated top-level overlay root in document.body, ensuring visibility above all transformed/parallax/overflow containers with z-index 9999."
+}

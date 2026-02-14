@@ -1,0 +1,69 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Make background music controls always visible via top-layer portal + safe mounting diagnostics",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "summary": "Keep background music controls always visible, clickable, and keyboard-accessible across the entire Valentine experience on desktop and mobile.",
+      "acceptanceCriteria": [
+        "On first page load, a visible music controls panel is present (no missing/blank UI) without requiring any special navigation steps.",
+        "The music controls remain visible across all steps (welcome, cards, gift code, bonus card, end).",
+        "The music controls are not hidden behind any overlays/effects/backgrounds and are clickable/tappable.",
+        "Controls are reachable via keyboard navigation (Tab) and have appropriate aria-labels preserved (Play/Pause, Next track, Previous track, Mute/Unmute, Volume control)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MusicControls.tsx",
+          "operation": "modify",
+          "description": "Adjust the music controls container positioning and layering for reliable visibility on mobile/desktop (e.g., safe-area-aware bottom spacing, higher z-index, ensure pointer-events are enabled) while preserving existing keyboard focusability and aria-labels. Keep using shadcn-ui Button/Slider/Tooltip components as currently implemented; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure music controls are mounted at the app level (not tied to any step UI) so they remain present across the entire Valentine experience; wire to the new top-layer portal wrapper component so visibility does not depend on page flow. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Prevent stacking-context and overflow/transform issues by rendering music controls in a top-level layer via a portal (or app-level overlay root).",
+      "acceptanceCriteria": [
+        "Music controls appear above the parallax/transformed background and ambient effects on all supported browsers.",
+        "Music controls remain visible even if the main page container uses overflow-hidden and/or transformed elements exist elsewhere on the page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MusicControlsPortal.tsx",
+          "operation": "create",
+          "description": "Create a small wrapper that renders the MusicControls UI via a React portal into document.body (or a dedicated overlay root created/managed by this component) so it is not affected by ValentineExperience transforms/overflow and always sits in the top layer. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the direct MusicControls render with the new MusicControlsPortal to guarantee controls are rendered in the top-level layer above transformed/parallax layers. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add diagnostics for mount/visibility issues: stable test id on the root and a non-intrusive warning + graceful fallback when rendered without provider/context.",
+      "acceptanceCriteria": [
+        "The music controls root element includes a stable attribute (e.g., data-testid=\"music-controls\").",
+        "If the music controls are rendered outside the BackgroundMusicProvider, the app does not crash; instead, a clear English console warning is emitted and the UI degrades gracefully (e.g., controls hidden with an explanation toast or placeholder)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/music/BackgroundMusicProvider.tsx",
+          "operation": "modify",
+          "description": "Expose a safe/optional way for UI to detect whether the background music context is present (without throwing) so the controls can render a graceful fallback instead of crashing when the provider is missing."
+        },
+        {
+          "path": "frontend/src/components/MusicControls.tsx",
+          "operation": "modify",
+          "description": "Add data-testid=\"music-controls\" to the controls root element and update the component to avoid crashing when the music context is unavailable: emit a clear console warning and render a minimal placeholder/fallback UI (non-intrusive) instead of the full controls. Keep existing aria-labels for interactive controls when context is present. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

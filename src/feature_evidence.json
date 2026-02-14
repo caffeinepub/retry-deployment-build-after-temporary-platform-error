@@ -1,0 +1,62 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-ensure-the-background-music-control-ui-play-pause-next-previous-mute-volume-is-always-visible-and-accessible-during-the-valentine-experience-on-both-desktop-and-mobile",
+      "featureTitle": "Ensure the background music control UI (play/pause, next/previous, mute, volume) is always visible and accessible during the Valentine experience on both desktop and mobile.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/MusicControls.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-prevent-layout-stacking-context-issues-from-hiding-the-music-controls-by-rendering-the-controls-in-a-top-level-layer-that-is-not-affected-by-page-transforms-overflow-e-g-a-portal-to-document-body-or-an-app-level-fixed-overlay-root",
+      "featureTitle": "Prevent layout/stacking-context issues from hiding the music controls by rendering the controls in a top-level layer that is not affected by page transforms/overflow (e.g., a portal to document.body or an app-level fixed overlay root).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/MusicControlsPortal.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-lightweight-diagnostics-to-make-future-visibility-issues-easy-to-verify-add-a-stable-test-id-on-the-music-controls-root-element-and-log-a-non-intrusive-console-warning-if-the-music-controls-fail-to-mount-due-to-a-missing-provider-context",
+      "featureTitle": "Add lightweight diagnostics to make future visibility issues easy to verify: add a stable test id on the music controls root element and log a non-intrusive console warning if the music controls fail to mount due to a missing provider/context.",
+      "files": [
+        "frontend/src/components/MusicControls.tsx",
+        "frontend/src/music/BackgroundMusicProvider.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

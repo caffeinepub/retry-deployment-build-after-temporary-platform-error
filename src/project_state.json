@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "Music UI/control is not appearing (user reports \"music unable show\")"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-ensure-the-background-music-control-ui-play-pause-next-previous-mute-volume-is-always-visible-and-accessible-during-the-valentine-experience-on-both-desktop-and-mobile",
+      "title": "Ensure the background music control UI (play/pause, next/previous, mute, volume) is always visible and accessible during the Valentine experience on both desktop and mobile.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-prevent-layout-stacking-context-issues-from-hiding-the-music-controls-by-rendering-the-controls-in-a-top-level-layer-that-is-not-affected-by-page-transforms-overflow-e-g-a-portal-to-document-body-or-an-app-level-fixed-overlay-root",
+      "title": "Prevent layout/stacking-context issues from hiding the music controls by rendering the controls in a top-level layer that is not affected by page transforms/overflow (e.g., a portal to document.body or an app-level fixed overlay root).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-lightweight-diagnostics-to-make-future-visibility-issues-easy-to-verify-add-a-stable-test-id-on-the-music-controls-root-element-and-log-a-non-intrusive-console-warning-if-the-music-controls-fail-to-mount-due-to-a-missing-provider-context",
+      "title": "Add lightweight diagnostics to make future visibility issues easy to verify: add a stable test id on the music controls root element and log a non-intrusive console warning if the music controls fail to mount due to a missing provider/context.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [],
+  "projectName": "Fix background music controls not appearing",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
